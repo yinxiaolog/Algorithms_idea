@@ -1,19 +1,25 @@
-package chapter1.Chapter1_4;
+package chapter1.chapter1_4;
 
-import chapter1.chapter1_1.BinarySearch;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Arrays;
 
-public class TwoSumFast {
+public class TwoSumFaster {
     public static int count(int[] a) {
         Arrays.sort(a);
         int N = a.length;
         int cnt = 0;
-        for (int i = 0; i < N; i++) {
-            if (BinarySearch.rank(-a[i], a) > i) {
+
+        for(int i = 0,j = N - 1;i < j;){
+            if(-a[i] < a[j]){
+                j--;
+            } else if(-a[i] > a[j]){
+                i++;
+            }else {
                 cnt++;
+                i++;
+                j--;
             }
         }
         return cnt;
